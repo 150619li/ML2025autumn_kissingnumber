@@ -9,7 +9,7 @@
 ### 1. 基础定义：从几何到代数
 
 **几何定义：**
-[cite_start]在 $n$ 维欧几里得空间 $\mathbb{R}^n$ 中，接吻数 $\tau_n$ 定义为能同时与一个单位中心球相切（touching）且互不重叠（non-overlapping）的单位球的最大数量 [cite: 11, 12, 1480]。
+在 $n$ 维欧几里得空间 $\mathbb{R}^n$ 中，接吻数 $\tau_n$ 定义为能同时与一个单位中心球相切（touching）且互不重叠（non-overlapping）的单位球的最大数量。
 
 **代数转化（球面编码）：**
 假设中心球的半径为 1，球心在原点 $O$。周围的单位球如果与中心球相切，那么它们的球心 $x_1, x_2, \dots, x_N$ 必定位于半径为 $R=2$ 的球面上。
@@ -55,28 +55,28 @@ $$L(X) = \sum_{i \neq j} \left( \max(0, x_i^T x_j - 0.5) \right)^2$$
 
 ### 3. 进阶视角：AlphaEvolve 论文中的离散化方法
 
-[cite_start]在 AlphaEvolve 论文中，DeepMind 的团队采用了一种 **基于整数格点（Integer Lattice）** 的构造方法 [cite: 1489]。
+在 AlphaEvolve 论文中，DeepMind 的团队采用了一种 **基于整数格点（Integer Lattice）** 的构造方法。
 
 **核心引理 (Lemma 1)：**
-[cite_start]AlphaEvolve 论文提出了一个非常巧妙的引理 [cite: 1491, 1492]：
+AlphaEvolve 论文提出了一个非常巧妙的引理：
 
 设 $C \subset \mathbb{R}^d$ 是一个不包含原点的点集（可以是整数点），如果它满足：
 $$\min \{ \|u - v\| : u, v \in C, u \neq v \} \ge \max \{ \|u\| : u \in C \}$$
 即：**集合中任意两点的最小距离 $\ge$ 集合中模长最大的向量长度。**
 
 **构造结论：**
-[cite_start]如果找到了这样的集合 $C$，那么集合 $C' = \{ \frac{2u}{\|u\|} : u \in C \}$ 就构成了一个合法的 Kissing Configuration [cite: 1493]。
-[cite_start]也就是说，$C$ 的大小 $|C|$ 就是接吻数的一个 **下界 (Lower Bound)** [cite: 1494]。
+如果找到了这样的集合 $C$，那么集合 $C' = \{ \frac{2u}{\|u\|} : u \in C \}$ 就构成了一个合法的 Kissing Configuration。
+也就是说，$C$ 的大小 $|C|$ 就是接吻数的一个 **下界 (Lower Bound)**。
 
 **证明逻辑：**
 对于任意 $x, y \in C$，根据条件有 $\|x - y\|^2 \ge \max(\|x\|^2, \|y\|^2)$。
-[cite_start]展开左边：$\|x\|^2 + \|y\|^2 - 2\langle x, y \rangle \ge \max(\|x\|^2, \|y\|^2)$ [cite: 1495]。
-这蕴含了 $2\langle x, y \rangle \le \min(\|x\|^2, \|y\|^2) \le \|x\| [cite_start]\cdot \|y\|$ [cite: 1496]。
-[cite_start]进而推导出归一化后的点积 $\frac{x}{\|x\|} \cdot \frac{y}{\|y\|} \le 0.5$ [cite: 1503]。
+展开左边：$\|x\|^2 + \|y\|^2 - 2\langle x, y \rangle \ge \max(\|x\|^2, \|y\|^2)$。
+这蕴含了 $2\langle x, y \rangle \le \min(\|x\|^2, \|y\|^2) \le \|x\| \cdot \|y\|$。
+进而推导出归一化后的点积 $\frac{x}{\|x\|} \cdot \frac{y}{\|y\|} \le 0.5$。
 
 **应用：**
 1.  **连续优化 (Continuous Optimization):** 使用 PyTorch 优化 $x_i \cdot x_j \le 0.5$。
-2.  **离散搜索 (Discrete Search - AlphaEvolve):** 搜索整数点集 $C \subset \mathbb{Z}^n$，满足 $\min \|u-v\| [cite_start]\ge \max \|u\|$。这是论文能在 11 维找到 593 个点（打破记录）的关键数学工具 [cite: 72, 1489]。
+2.  **离散搜索 (Discrete Search - AlphaEvolve):** 搜索整数点集 $C \subset \mathbb{Z}^n$，满足 $\min \|u-v\| \ge \max \|u\|$。这是论文能在 11 维找到 593 个点（打破记录）的关键数学工具 。
 
 ### 总结：报告中可用的公式清单
 
