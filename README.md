@@ -1,7 +1,5 @@
 # 北京大学2025秋季机器学习期末作业
 
-## kissingnumber
-
 ## Kissing Number (接吻数) 项目数学解释与公式汇总
 
 这份内容可以直接用于 PDF 报告的 **"Problem Formulation" (问题建模)** 和 **"Methodology" (方法论)** 章节。
@@ -49,7 +47,7 @@ $$x_i^T x_j \le \frac{1}{2}, \quad \forall i \neq j$$
 $$L(X) = \sum_{i \neq j} \text{ReLU}(x_i^T x_j - 0.5)$$
 或者使用更平滑的平方形式：
 $$L(X) = \sum_{i \neq j} \left( \max(0, x_i^T x_j - 0.5) \right)^2$$
-*目标是最小化 $L(X)$。如果 $L(X)$ 能降到 0，说明存在这样的构型。*
+目标是最小化 $L(X)$。如果 $L(X)$ 能降到 0，说明存在这样的构型。
 
 ---
 
@@ -70,7 +68,7 @@ $$\min \{ \|u - v\| : u, v \in C, u \neq v \} \ge \max \{ \|u\| : u \in C \}$$
 
 **证明逻辑：**
 对于任意 $x, y \in C$，根据条件有 $\|x - y\|^2 \ge \max(\|x\|^2, \|y\|^2)$。
-展开左边：$\|x\|^2 + \|y\|^2 - 2\langle x, y \rangle \ge \max(\|x\|^2, \|y\|^2)$。
+展开左边 $\|x\|^2 + \|y\|^2 - 2\langle x, y \rangle \ge \max(\|x\|^2, \|y\|^2)$。
 这蕴含了 $2\langle x, y \rangle \le \min(\|x\|^2, \|y\|^2) \le \|x\| \cdot \|y\|$。
 进而推导出归一化后的点积 $\frac{x}{\|x\|} \cdot \frac{y}{\|y\|} \le 0.5$。
 
