@@ -8,7 +8,7 @@
 
 我们展示了不同模型在 $\mathrm{dim}=1,2,3,4,5,6,7,8,9$ 维接吻数问题上获得的最佳结果。详见我们的报告。
 
-![image](assets/image.png)
+![image](image.png)
 
 ## 致谢
 
