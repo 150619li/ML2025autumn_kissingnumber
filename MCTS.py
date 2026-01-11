@@ -123,12 +123,12 @@ class MCTS():
         unvisited_mask = Nsa_s[valid_actions] == 0
         unvisited_actions = valid_actions[unvisited_mask]
         
-        for a in unvisited_actions:
-            # NOTE: look one step ahead!
-            tmp_next_s = self.game.getNextState(canonicalBoard, a)
-            tmp_v = self.search(tmp_next_s)
-            Qsa_s[a] = tmp_v
-            Nsa_s[a] = 1
+        # for a in unvisited_actions:
+        #     # NOTE: look one step ahead!
+        #     tmp_next_s = self.game.getNextState(canonicalBoard, a)
+        #     tmp_v = self.search(tmp_next_s)
+        #     Qsa_s[a] = tmp_v
+        #     Nsa_s[a] = 1
 
         # 只对有效动作计算 UCB
         # u = Q(s,a) + P(s,a) * sqrt(N(s)) / (1 + N(s,a)) * (cpuct1 + log2((1 + cpuct2 + N(s)) / cpuct2))

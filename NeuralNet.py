@@ -18,8 +18,8 @@ import torch.optim as optim
 args = dotdict({
     'lr': 1e-3,
     'dropout': 0.1,
-    'epochs': 10,
-    'batch_size': 256,
+    'epochs': 20,
+    'batch_size': 1024,
     'cuda': torch.cuda.is_available(),
     'num_channels': 512,
 })
@@ -95,7 +95,7 @@ class KissingNNet(nn.Module):
 
         pi = self.atte2pi(r[:, 0, :]) # pi_token
         v = self.atte2v(r[:, 1, :]) # v_token
-        v = num_balls[:, None] + F.relu(v)
+        v = F.sigmoid(v)
 
         # NOTE: Now we only return raw logits of the policy distribution!
         return pi, v
@@ -181,7 +181,7 @@ class NeuralNet():
         Returns:
             pi: a policy vector for the current board- a numpy array of length
                 game.getActionSize
-            v: a float in [-1,1] that gives the value of the current board
+            v: a float in [0,1] that gives the value of the current board
         """
         # timing
         start = time.time()

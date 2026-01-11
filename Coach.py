@@ -21,7 +21,7 @@ torch.multiprocessing.set_sharing_strategy('file_system')
 log = logging.getLogger(__name__)
 
 
-def executeEpisode_parallel(nnet, args, rank):
+def executeEpisode_parallel(args, game, mcts, rank):
     """
     This function executes one episode of self-play, starting with player 1.
     As the game is played, each turn is added as a training example to
@@ -38,11 +38,9 @@ def executeEpisode_parallel(nnet, args, rank):
                         the player eventually won the game, else -1.
     """
     trainExamples = []
-    game = Game(args.dim, args.boundary, args.upper_bound, print_result=0)
     board = game.getInitBoard()
     curPlayer = 1
     episodeStep = 0
-    mcts = MCTS(game, nnet, args, rank)  # reset search tree
 
     while True:
         episodeStep += 1
@@ -70,9 +68,11 @@ def executeEpisode_parallel_pack(nnet, args, iter_num, rank):
     trainExamples = []
     best_num = 0
     best_board = torch.zeros(size=(args.upper_bound, args.dim))
+    game = Game(args.dim, args.boundary, args.upper_bound, print_result=(rank == 0))
+    mcts = MCTS(game, nnet, args, rank)
     for i in range(iter_num):
         # run episode
-        tmpexample, tmpbest, tmpboard = executeEpisode_parallel(nnet, args, rank)
+        tmpexample, tmpbest, tmpboard = executeEpisode_parallel(args, game, mcts, rank)
         trainExamples.extend(tmpexample)
         if tmpbest > best_num:
             best_num = tmpbest
