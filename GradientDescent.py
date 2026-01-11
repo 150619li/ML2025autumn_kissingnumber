@@ -76,8 +76,8 @@ def find_max_kissing_number(dim):
     while True:
         print(f"尝试放入 {current_n} 个球...", end=" ", flush=True)
         # 维度越高，越容易陷入局部最优，需要更多尝试次数和步数
-        attempts = 5 if dim <= 4 else 10
-        steps = 2000 if dim <= 4 else 5000
+        attempts = 10
+        steps = 1000*dim
         
         success = solve_kissing_configuration(current_n, dim, max_steps=steps, attempts=attempts)
         
