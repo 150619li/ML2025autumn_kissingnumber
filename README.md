@@ -1,32 +1,36 @@
-# Towards Solving Kissing Number Problem with Reinforcement Learning and MCTS
-Term project for Machine Learning course in Peking University (2023 spring).
+# 使用强化学习和蒙特卡洛树搜索求解接吻数问题
 
-The Kissing Number Game is implemented in ```Game.py```. ```Coach.py``` contains the core training loop and ```MCTS.py``` performs the Monte Carlo Tree Search. The parameters for the self-play can be specified in ```main.py```, including the dimension, search space, hyperparameters for UCB formula, etc. Neural network architecture is implemented in ```NeuralNet.py```. 
+本项目维 2025 秋季学期机器学习大作业 Baseline2（MCTS+RL）
 
-## Installation
+接吻数游戏在 ```Game.py``` 中实现。```Coach.py``` 包含核心训练循环，```MCTS.py``` 执行蒙特卡洛树搜索。自我对弈的参数可以在 ```main.py``` 中指定，包括维度、搜索空间、UCB公式的超参数等。神经网络架构在 ```NeuralNet.py``` 中实现。
 
-An optional first step, which will make everything easier:
+## 安装
+
+安装 conda 环境：
 
 ```
 conda create --name kissingnumber python=3.10
 conda activate kissingnumber
 ```
 
-Then, install our project:
+然后，安装我们的项目：
 
 ```
-git clone https://github.com/YK-YoungK/ML_proj_KissingNumber.git
-cd ML_proj_KissingNumber
+git clone https://github.com/150619li/ML2025autumn_kissingnumber
+cd ML2025autumn_kissingnumber
 pip install -r requirements.txt
 ```
 
-To start searching:
+开始搜索：
 ```bash
 python main.py
 ```
-## Experiments
+## 实验
 
-We present the best results obtained by different models for the kissing number problem in $\mathrm{dim}=3,4,5,6$. In the case of $\mathrm{dim}=5,6$, the RL+MCTS+Knowledge approach utilizes the optimal results from the previous dimension to find the results in the current dimension. Both of our models presented here employ the **''looking one step ahead''** technique. See our report for more details.
+我们展示了不同模型在 $\mathrm{dim}=1,2,3,4,5,6,7,8,9$ 维接吻数问题上获得的最佳结果。详见我们的报告。
 
-![image](https://github.com/YK-YoungK/ML_proj_KissingNumber/blob/main/fig/Results.png)
+![image](assets/image.png)
 
+## 致谢
+
+本项目基于 [开源代码](https://github.com/YK-YoungK/ML_proj_KissingNumber) 开发，进行了代码效率提升以及更高维的搜索实验。
